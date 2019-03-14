@@ -1,2 +1,54 @@
+{{#extend "scripts"}}
+<script>
+    $(function () {
+        var avail_cocktails = [
+            // value needs to be the zero index, should probably change this
+            { value: 0, label: "20th Century", sel: false},
+            { value: 1, label: "Absinthe Drip", sel: false},
+            { value: 2, label: "Bee's Knees", sel: false},
+            { value: 3, label: "Café Arroz", sel: false}
+        ];
+        var sel_cocktails = new Array(avail_cocktails.length).fill(0);
+
+        $("#cocktails").autocomplete({
+            source: avail_cocktails,
+            focus: function(event, ui) {
+                event.preventDefault();
+                $("#cocktails").val(ui.item.label);
+            },
+            select: function (event, ui) {
+                //Selected text reference: ui.item.value
+                // Append selection to list below
+                event.preventDefault();
+                if(sel_cocktails[ui.item.value] === 0) {
+                    $("#sel_cocktail_list").append("<li id='" + ui.item.value + "'>" + ui.item.label + "</li>" +
+                        "<a href='#' id='" + ui.item.value + "'><span class='ui-icon ui-icon-closethick'></span></a>");
+
+                    sel_cocktails[ui.item.value] = 1;
+                }
+                $("#cocktails").val("");
+                return false;
+            }
+        });
+
+        /*
+        $(".widget input[type=submit], .widget a, .widget button").button();
+        $("button, input, a").click( function(event) {
+            event.preventDefault();
+        });
+        */
+    });
+</script>
+{{/extend}}
+
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<div class="ui-widget">
+    <label for="cocktails">Cocktails: </label>
+    <input id="cocktails" />
+</div>
+
+<div id="sel_cocktail_list">
+    <ul class="selected-cocktails"></ul>
+</div>
+<input class="ui-button ui-widget ui-corner-all" type="submit" value="Retrieve Cocktail Results" />

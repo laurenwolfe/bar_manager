@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
    res.render('cocktail_results', {
       results: [
          { _id: 1, name: "20th Century" },

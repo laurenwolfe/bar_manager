@@ -21,7 +21,7 @@
           "ingredient": { "name": "Creme de Cacao" },
           "amount": 0.75,
           "unit": "oz"
-      },
+      }
   ],
   "glass": "Coupe",
   "instructions": "Shake with ice and strain into chilled coupe."
