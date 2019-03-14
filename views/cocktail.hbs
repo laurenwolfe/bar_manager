@@ -1,0 +1,17 @@
+<div class="recipe" id="{{_id}}">
+    <h3 class="recipe_name">{{name}}</h3>
+    <ul class="ingredients">
+        <div class="recipe_label">Ingredients:</div>
+        {{#each ingredients}}
+        <li>
+            {{this.amount}} {{this.unit}} {{this.ingredient.name}}
+        </li>
+        {{/each}}
+    </ul>
+    <div class="glass">
+        <div class="recipe_label">Glassware:</div> {{glass}}
+    </div>
+    <div class="instructions">
+        <div class="recipe_label">To Mix:</div> {{instructions}}
+    </div>
+</div>
